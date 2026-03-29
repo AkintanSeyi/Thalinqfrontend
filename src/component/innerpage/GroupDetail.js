@@ -39,7 +39,7 @@ const GroupDetail = () => {
 
   const [notificationsEnabled, setNotificationsEnabled] = useState(false);
   const [memberSearch, setMemberSearch] = useState("");
-
+const [processingPayment, setProcessingPayment] = useState(false);
   const [commentModalVisible, setCommentModalVisible] = useState(false);
   const [selectedPost, setSelectedPost] = useState(null);
   const [commentText, setCommentText] = useState("");
