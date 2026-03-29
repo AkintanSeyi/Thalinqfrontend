@@ -2,13 +2,13 @@ import React, { useState, useEffect, useCallback, useMemo } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 // Using react-icons as the web replacement for @expo/vector-icons
 import { 
-  IoArrowBack, IoEllipsisVertical, IoEllipsisHorizontal, 
+  IoArrowBack,  
   IoHeart, IoHeartOutline, IoChatbubbleOutline, 
   IoPaperPlaneOutline, IoNotifications, IoNotificationsOffOutline,
-  IoExitOutline, IoPersonAddOutline, IoCreateOutline,
-  IoSearch, IoCloseCircle, IoClose, IoSend,
-  IoLockClosed, IoPeopleOutline, IoShieldCheckmark, IoVideocam, IoPulse,
-  IoLogoFacebook, IoLogoInstagram, IoLogoTwitter, IoLogoLinkedin, IoLinkOutline
+IoCreateOutline,
+  IoSearch, IoClose, IoSend,
+  IoLockClosed,  IoVideocam, 
+  IoLogoFacebook,  IoLogoTwitter, IoLogoLinkedin, IoLinkOutline
 } from "react-icons/io5";
 
 import { jwtDecode } from "jwt-decode";
@@ -31,7 +31,7 @@ const GroupDetail = () => {
   const [group, setGroup] = useState(null);
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [processingPayment, setProcessingPayment] = useState(false);
+
   const [currentUserId, setCurrentUserId] = useState(null);
   const [currentUserEmail, setCurrentUserEmail] = useState(null);
   const [isMember, setIsMember] = useState(false);
@@ -125,16 +125,16 @@ const GroupDetail = () => {
   };
 
   // --- LOGIC HANDLERS ---
-  const handleBlockUser = async (targetUserId) => {
-    if (!window.confirm("Are you sure you want to block this user?")) return;
-    try {
-      const res = await api.blockUser({ currentUserId, blockUserId: targetUserId });
-      if (res.data.success) {
-        setPosts(prev => prev.filter(p => String(p.author?._id || p.author) !== String(targetUserId)));
-        alert("User blocked.");
-      }
-    } catch (error) { alert("Could not block user."); }
-  };
+  // const handleBlockUser = async (targetUserId) => {
+  //   if (!window.confirm("Are you sure you want to block this user?")) return;
+  //   try {
+  //     const res = await api.blockUser({ currentUserId, blockUserId: targetUserId });
+  //     if (res.data.success) {
+  //       setPosts(prev => prev.filter(p => String(p.author?._id || p.author) !== String(targetUserId)));
+  //       alert("User blocked.");
+  //     }
+  //   } catch (error) { alert("Could not block user."); }
+  // };
 const handleSocialShare = (platform) => {
   const shareName = selectedPost ? `Post by ${selectedPost.author?.name}` : group?.name;
   const shareMessage = `Check out ${shareName} on ThaLinq!`;
